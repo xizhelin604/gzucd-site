@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广州应用科技学院 — 让应用成就未来</title>
+<meta name="description" content="广州应用科技学院是一所全日制普通本科高校，立足粤港澳大湾区，以应用型人才培养为核心。">
+<style>
+/* ===== Reset & Variables ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000;--bg-alt:#0a0a0a;
+  --text:#f5f5f7;--text-dim:#a1a1a6;--text-muted:#6e6e73;
+  --blue:#2997ff;--purple:#bf5af2;--green:#30d158;--orange:#ff9f0a;--red:#ff453a;
+  --glass:rgba(29,29,31,.72);--glass-border:rgba(255,255,255,.08);
+  --card:rgba(28,28,30,.65);
+  --gap:140px;--max-w:1120px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,"PingFang SC","Noto Sans CJK SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ===== Scroll Reveal ===== */
+.r{opacity:0;transform:translateY(44px);transition:opacity .85s cubic-bezier(.25,.46,.45,.94),transform .85s cubic-bezier(.25,.46,.45,.94)}.r.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+/* ===== Nav ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,56px);height:52px;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--glass-border)}
+.nav-brand{font-size:15px;font-weight:600;letter-spacing:-.01em;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:12px;color:var(--text-dim);transition:color .25s;letter-spacing:.02em}
+.nav-links a:hover{color:var(--text)}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-ham span{display:block;width:20px;height:1.5px;background:var(--text-dim);transition:.3s}
+@media(max-width:860px){.nav-ham{display:flex}.nav-links{display:none;position:absolute;top:52px;left:0;right:0;flex-direction:column;gap:0;background:rgba(29,29,31,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border)}}
+.nav-links.open{display:flex}@media(max-width:860px){.nav-links a{padding:14px 24px;display:block;font-size:14px}.nav-links li{border-bottom:1px solid var(--glass-border)}}
+
+/* ===== Hero ===== */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px clamp(20px,6vw,80px) 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:1100px;height:1100px;background:radial-gradient(circle,rgba(41,151,255,.1) 0%,rgba(191,90,242,.05) 35%,transparent 65%);border-radius:50%;pointer-events:none;animation:pulse 8s ease-in-out infinite alternate}
+.hero::after{content:'';position:absolute;bottom:-10%;left:30%;width:600px;height:600px;background:radial-gradient(circle,rgba(48,209,88,.06) 0%,transparent 65%);border-radius:50%;pointer-events:none;animation:pulse 10s ease-in-out infinite alternate-reverse}
+@keyframes pulse{0%{transform:translateX(-50%) scale(1);opacity:.6}100%{transform:translateX(-50%) scale(1.15);opacity:1}}
+.hero-badge{display:inline-block;font-size:13px;color:var(--blue);border:1px solid rgba(41,151,255,.3);border-radius:999px;padding:6px 18px;margin-bottom:32px;letter-spacing:.04em}
+.hero h1{font-size:clamp(44px,8vw,100px);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin-bottom:24px;background:linear-gradient(180deg,#fff 0%,#a1a1a6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
+.hero-sub{font-size:clamp(17px,2.2vw,24px);color:var(--text-dim);max-width:660px;line-height:1.55;letter-spacing:-.01em;margin-bottom:48px;position:relative;z-index:1}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:500;color:var(--blue);transition:gap .3s;position:relative;z-index:1}
+.hero-cta:hover{gap:13px}
+.hero-cta svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.hero-scroll svg{width:20px;height:20px;stroke:var(--text-muted);stroke-width:2;fill:none}
+
+/* ===== Section ===== */
+.sec{padding:var(--gap) clamp(20px,5vw,64px);max-width:var(--max-w);margin:0 auto}
+.sec-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:10px}
+.sec-title{font-size:clamp(32px,4.5vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.1;margin-bottom:18px}
+.sec-desc{font-size:clamp(15px,1.8vw,20px);color:var(--text-dim);max-width:620px;line-height:1.6;margin-bottom:56px}
+
+/* ===== Divider ===== */
+.divider{height:1px;margin:0 clamp(32px,8vw,120px);background:linear-gradient(90deg,transparent,var(--glass-border),rgba(41,151,255,.15),var(--glass-border),transparent)}
+
+/* ===== About Grid ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-text h3{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-bottom:16px;line-height:1.3}
+.about-text p{font-size:16px;color:var(--text-dim);line-height:1.7;margin-bottom:14px}
+.about-visual{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(41,151,255,.12),rgba(191,90,242,.12));display:flex;align-items:center;justify-content:center}
+.about-visual .big-emoji{font-size:100px;filter:grayscale(.2)}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.about-stat{text-align:center}
+.about-stat .n{font-size:clamp(28px,3vw,40px);font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.about-stat .l{font-size:13px;color:var(--text-dim);margin-top:4px}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:repeat(3,1fr)}}
+
+/* ===== Cards Row ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--glass-border);border-radius:20px;padding:36px 28px;transition:transform .35s cubic-bezier(.25,.46,.45,.94),border-color .35s}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.15)}
+.card-icon{font-size:36px;margin-bottom:18px;display:block}
+.card h3{font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:10px}
+.card p{font-size:14px;color:var(--text-dim);line-height:1.6}
+
+/* ===== Faculty ===== */
+.faculty-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.faculty-card{background:var(--card);border:1px solid var(--glass-border);border-radius:16px;padding:32px 24px;text-align:center;transition:transform .3s}
+.faculty-card:hover{transform:scale(1.03)}
+.faculty-card .icon{font-size:44px;margin-bottom:14px;display:block}
+.faculty-card h4{font-size:17px;font-weight:600;margin-bottom:6px}
+.faculty-card p{font-size:13px;color:var(--text-dim);line-height:1.5}
+
+/* ===== Departments ===== */
+.dept-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.dept-tab{padding:10px 20px;border-radius:999px;border:1px solid var(--glass-border);background:transparent;color:var(--text-dim);font-size:14px;cursor:pointer;transition:.25s}
+.dept-tab.active,.dept-tab:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.dept-panel{display:none}.dept-panel.active{display:block}
+.dept-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.dept-item{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--card);border:1px solid var(--glass-border);border-radius:12px;font-size:15px;font-weight:500;transition:background .2s}
+.dept-item:hover{background:rgba(41,151,255,.08)}
+.dept-item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ===== Campuses ===== */
+.campus-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.campus-card{border-radius:24px;overflow:hidden;border:1px solid var(--glass-border);background:var(--card)}
+.campus-card-head{padding:48px 36px;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
+.campus-card-head::before{content:'';position:absolute;inset:0;opacity:.15}
+.campus-card-head.guangzhou{background:linear-gradient(135deg,rgba(41,151,255,.2),rgba(191,90,242,.15))}
+.campus-card-head.zhaoqing{background:linear-gradient(135deg,rgba(48,209,88,.2),rgba(97,230,190,.15))}
+.campus-card-head h3{font-size:28px;font-weight:700;letter-spacing:-.02em;position:relative}
+.campus-card-head p{font-size:14px;color:var(--text-dim);margin-top:6px;position:relative}
+.campus-card-body{padding:28px 36px}
+.campus-card-body ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.campus-card-body li{font-size:14px;color:var(--text-dim);display:flex;align-items:center;gap:10px}
+.campus-card-body li::before{content:'✓';color:var(--green);font-weight:700}
+@media(max-width:768px){.campus-cards{grid-template-columns:1fr}}
+
+/* ===== Honors ===== */
+.honor-timeline{position:relative;padding-left:32px}
+.honor-timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--blue),var(--purple),var(--green))}
+.honor-item{position:relative;margin-bottom:32px;padding:24px;background:var(--card);border:1px solid var(--glass-border);border-radius:16px}
+.honor-item::before{content:'';position:absolute;left:-29px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid var(--bg)}
+.honor-item h4{font-size:17px;font-weight:600;margin-bottom:6px}
+.honor-item p{font-size:14px;color:var(--text-dim);line-height:1.55}
+.honor-item .year{font-size:12px;color:var(--blue);font-weight:600;margin-bottom:4px}
+
+/* ===== Intl ===== */
+.intl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.intl-card{background:var(--card);border:1px solid var(--glass-border);border-radius:16px;padding:28px 24px;text-align:center;transition:transform .3s}
+.intl-card:hover{transform:translateY(-4px)}
+.intl-card .flag{font-size:40px;margin-bottom:12px;display:block}
+.intl-card h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.intl-card p{font-size:13px;color:var(--text-dim)}
+
+/* ===== Admissions ===== */
+.adm-banner{background:linear-gradient(135deg,rgba(41,151,255,.1),rgba(191,90,242,.08));border:1px solid var(--glass-border);border-radius:24px;padding:48px 40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.adm-banner h3{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em}
+.adm-banner p{font-size:16px;color:var(--text-dim);margin-top:8px;max-width:500px}
+.adm-btn{display:inline-flex;padding:14px 32px;border-radius:999px;background:var(--blue);color:#fff;font-size:16px;font-weight:600;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none}
+.adm-btn:hover{transform:scale(1.04);box-shadow:0 4px 24px rgba(41,151,255,.3)}
+
+/* ===== Alumni ===== */
+.alumni-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.alumni-card{background:var(--card);border:1px solid var(--glass-border);border-radius:20px;padding:32px 28px;transition:transform .35s}
+.alumni-card:hover{transform:translateY(-6px)}
+.alumni-avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.alumni-card:nth-child(1) .alumni-avatar{background:linear-gradient(135deg,#2997ff,#5ac8fa)}
+.alumni-card:nth-child(2) .alumni-avatar{background:linear-gradient(135deg,#bf5af2,#da8fff)}
+.alumni-card:nth-child(3) .alumni-avatar{background:linear-gradient(135deg,#30d158,#63e6be)}
+.alumni-card:nth-child(4) .alumni-avatar{background:linear-gradient(135deg,#ff9f0a,#ffd60a)}
+.alumni-card h4{font-size:17px;font-weight:600;margin-bottom:4px}
+.alumni-card .role{font-size:13px;color:var(--blue);margin-bottom:10px}
+.alumni-card p{font-size:14px;color:var(--text-dim);line-height:1.55}
+.alumni-card blockquote{font-size:14px;color:var(--text-dim);border-left:2px solid var(--purple);padding-left:14px;margin-top:14px;font-style:italic;line-height:1.6}
+
+/* ===== Motto Center ===== */
+.motto-center{text-align:center;padding:var(--gap) clamp(20px,5vw,64px);position:relative}
+.motto-center::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(191,90,242,.07) 0%,transparent 65%);pointer-events:none}
+.motto-big{font-size:clamp(36px,5.5vw,72px);font-weight:700;letter-spacing:-.035em;line-height:1.15;position:relative;background:linear-gradient(135deg,#fff 0%,var(--blue) 45%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.motto-sub{font-size:clamp(15px,1.8vw,20px);color:var(--text-dim);margin-top:20px;position:relative;max-width:560px;margin-left:auto;margin-right:auto}
+
+/* ===== Footer ===== */
+.footer{border-top:1px solid var(--glass-border);padding:56px clamp(20px,5vw,64px) 40px}
+.footer-inner{max-width:var(--max-w);margin:0 auto}
+.footer-cols{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;margin-bottom:48px}
+.footer-col h5{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:14px}
+.footer-col p,.footer-col a{font-size:14px;color:var(--text-muted);line-height:1.8;display:block}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:24px;border-top:1px solid var(--glass-border)}
+.footer-bottom p{font-size:12px;color:var(--text-muted)}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{font-size:12px;color:var(--text-muted);transition:color .2s}
+.footer-bottom-links a:hover{color:var(--text-dim)}
+@media(max-width:768px){.footer-cols{grid-template-columns:1fr 1fr}.adm-banner{flex-direction:column;text-align:center}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-brand">广州应用科技学院</div>
+  <ul class="nav-links" id="nav">
+    <li><a href="#about">学校概况</a></li>
+    <li><a href="#faculty">师资力量</a></li>
+    <li><a href="#depts">学科专业</a></li>
+    <li><a href="#campuses">校区环境</a></li>
+    <li><a href="#honors">荣誉成就</a></li>
+    <li><a href="#intl">国际交流</a></li>
+    <li><a href="#admissions">招生信息</a></li>
+    <li><a href="#alumni">校友风采</a></li>
+  </ul>
+  <button class="nav-ham" id="ham" aria-label="菜单"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="hero-badge r">全日制普通本科高校 · 粤港澳大湾区</span>
+  <h1 class="r d1">让应用<br>成就未来。</h1>
+  <p class="hero-sub r d2">立足广州、肇庆双城联动，面向粤港澳大湾区产业前沿。<br>以应用型人才培养为核心，用实践连接知识，用创新定义未来。</p>
+  <a href="#about" class="hero-cta r d3">
+    探索广应科
+    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <div class="hero-scroll">
+    <span>向下滚动</span>
+    <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== ABOUT ===== -->
+<section class="sec" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="sec-label r">学校概况</span>
+      <h3 class="r d1">一所扎根湾区、面向未来的应用型本科高校</h3>
+      <p class="r d2">广州应用科技学院始建于 2000 年，前身为广州大学松田学院，2020 年经教育部批准转设为独立设置的普通本科高校。学校由香港上市教育集团中国东方教育控股支持创办，是广东省教育厅主管的全日制本科院校。</p>
+      <p class="r d3">学校现有广州、肇庆两大校区，占地面积逾 2000 亩，校舍建筑面积近 70 万平方米。校园环境优美，教学设施先进，拥有现代化的图书馆、实验中心、体育场馆和艺术表演厅。</p>
+      <div class="about-stats r d4">
+        <div class="about-stat"><div class="n">2000</div><div class="l">建校年份</div></div>
+        <div class="about-stat"><div class="n">2000+</div><div class="l">亩校园面积</div></div>
+        <div class="about-stat"><div class="n">70 万㎡</div><div class="l">建筑面积</div></div>
+      </div>
+    </div>
+    <div class="about-visual r d2">
+      <span class="big-emoji">🏫</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== SPIRIT ===== -->
+<section class="sec" id="spirit">
+  <div style="text-align:center;margin-bottom:56px">
+    <span class="sec-label r">核心精神</span>
+    <h2 class="sec-title r d1">知行合一，学以致用</h2>
+    <p class="sec-desc r d2" style="margin-left:auto;margin-right:auto">以"厚德、博学、笃行、创新"为校训，坚持立德树人根本任务，培养具有社会责任感、创新精神和实践能力的高素质应用型人才。</p>
+  </div>
+  <div class="cards">
+    <div class="card r d1"><span class="card-icon">🎓</span><h3>立德树人</h3><p>把思想政治教育贯穿教育教学全过程，培养德才兼备的时代新人。</p></div>
+    <div class="card r d2"><span class="card-icon">🔬</span><h3>产教融合</h3><p>与 300+ 行业龙头企业深度合作，共建产业学院、实习实训基地，实现校企协同育人。</p></div>
+    <div class="card r d3"><span class="card-icon">💡</span><h3>创新驱动</h3><p>设立大学生创新创业基金，支持学生参与"互联网+"、"挑战杯"等国家级赛事，屡获殊荣。</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== FACULTY ===== -->
+<section class="sec" id="faculty">
+  <span class="sec-label r">师资力量</span>
+  <h2 class="sec-title r d1">名师荟萃，<br>匠心育人。</h2>
+  <p class="sec-desc r d2">学校拥有一支结构合理、素质优良的师资队伍，其中高级职称教师占比超过 40%，具有博士学位教师比例持续提升，多名教师获省级教学名师、优秀教师称号。</p>
+  <div class="faculty-row">
+    <div class="faculty-card r d1"><span class="icon">👨‍🏫</span><h4>高级职称教师</h4><p>占比超 40%，含教授、副教授等</p></div>
+    <div class="faculty-card r d2"><span class="icon">🎖️</span><h4>省级教学名师</h4><p>多名教师获省级教学成果奖</p></div>
+    <div class="faculty-card r d3"><span class="icon">🌏</span><h4>海外留学背景</h4><p>教师团队中具有海外学习经历者逐年增长</p></div>
+    <div class="faculty-card r d4"><span class="icon">🏭</span><h4>双师型队伍</h4><p>大量教师兼具行业实践经验与教学能力</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== DEPARTMENTS ===== -->
+<section class="sec" id="depts">
+  <span class="sec-label r">学科专业</span>
+  <h2 class="sec-title r d1">六大院系，<br>百余个专业方向。</h2>
+  <p class="sec-desc r d2">覆盖工学、管理学、艺术学、文学、经济学、法学、教育学等学科门类，构建与粤港澳大湾区产业需求紧密对接的专业矩阵。</p>
+
+  <div class="dept-tabs r d2" id="deptTabs">
+    <button class="dept-tab active" data-tab="eng">工学类</button>
+    <button class="dept-tab" data-tab="mgmt">管理学类</button>
+    <button class="dept-tab" data-tab="art">艺术设计类</button>
+    <button class="dept-tab" data-tab="lit">语言文学类</button>
+    <button class="dept-tab" data-tab="econ">经济金融类</button>
+    <button class="dept-tab" data-tab="law">法学教育类</button>
+  </div>
+
+  <div class="dept-panel active" id="panel-eng">
+    <div class="dept-list">
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>计算机科学与技术</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>软件工程</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>人工智能</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>数据科学与大数据技术</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>通信工程</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>电子信息工程</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>机器人工程</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>智能制造工程</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>网络空间安全</div>
+      <div class="dept-item"><span class="dot" style="background:var(--blue)"></span>物联网工程</div>
+    </div>
+  </div>
+  <div class="dept-panel" id="panel-mgmt">
+    <div class="dept-list">
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>工商管理</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>会计学</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>财务管理</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>电子商务</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>物流管理</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>人力资源管理</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>市场营销</div>
+      <div class="dept-item"><span class="dot" style="background:var(--purple)"></span>行政管理</div>
+    </div>
+  </div>
+  <div class="dept-panel" id="panel-art">
+    <div class="dept-list">
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>视觉传达设计</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>环境设计</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>数字媒体艺术</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>服装与服饰设计</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>产品设计</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>动画</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>网络与新媒体</div>
+      <div class="dept-item"><span class="dot" style="background:var(--orange)"></span>广播电视编导</div>
+    </div>
+  </div>
+  <div class="dept-panel" id="panel-lit">
+    <div class="dept-list">
+      <div class="dept-item"><span class="dot" style="background:var(--green)"></span>英语</div>
+      <div class="dept-item"><span class="dot" style="background:var(--green)"></span>日语</div>
+      <div class="dept-item"><span class="dot" style="background:var(--green)"></span>翻译</div>
+      <div class="dept-item"><span class="dot" style="background:var(--green)"></span>商务英语</div>
+      <div class="dept-item"><span class="dot" style="background:var(--green)"></span>汉语国际教育</div>
+    </div>
+  </div>
+  <div class="dept-panel" id="panel-econ">
+    <div class="dept-list">
+      <div class="dept-item"><span class="dot" style="background:var(--red)"></span>金融学</div>
+      <div class="dept-item"><span class="dot" style="background:var(--red)"></span>国际经济与贸易</div>
+      <div class="dept-item"><span class="dot" style="background:var(--red)"></span>投资学</div>
+      <div class="dept-item"><span class="dot" style="background:var(--red)"></span>保险学</div>
+      <div class="dept-item"><span class="dot" style="background:var(--red)"></span>金融科技</div>
+    </div>
+  </div>
+  <div class="dept-panel" id="panel-law">
+    <div class="dept-list">
+      <div class="dept-item"><span class="dot" style="background:#ff6b6b"></span>法学</div>
+      <div class="dept-item"><span class="dot" style="background:#ff6b6b"></span>学前教育</div>
+      <div class="dept-item"><span class="dot" style="background:#ff6b6b"></span>小学教育</div>
+      <div class="dept-item"><span class="dot" style="background:#ff6b6b"></span>体育教育</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== CAMPUSES ===== -->
+<section class="sec" id="campuses">
+  <span class="sec-label r">校区环境</span>
+  <h2 class="sec-title r d1">双城联动，<br>各具特色。</h2>
+  <p class="sec-desc r d2">广州校区地处一线城市核心地带，肇庆校区坐落在风景如画的西江之滨，两校区资源共享、优势互补。</p>
+  <div class="campus-cards">
+    <div class="campus-card r d1">
+      <div class="campus-card-head guangzhou">
+        <h3>🏙️ 广州校区</h3>
+        <p>广州市增城区</p>
+      </div>
+      <div class="campus-card-body">
+        <ul>
+          <li>毗邻东莞、深圳，辐射大湾区核心商圈</li>
+          <li>现代化教学楼与智慧实验室</li>
+          <li>校内创业孵化基地</li>
+          <li>地铁沿线，交通便利</li>
+          <li>周边科技企业云集，实习就业机会丰富</li>
+        </ul>
+      </div>
+    </div>
+    <div class="campus-card r d2">
+      <div class="campus-card-head zhaoqing">
+        <h3>🌿 肇庆校区</h3>
+        <p>肇庆市高要区</p>
+      </div>
+      <div class="campus-card-body">
+        <ul>
+          <li>背靠七星岩，面朝鼎湖山，天然氧吧</li>
+          <li>占地广阔，绿化率高，生态环境优越</li>
+          <li>标准化体育场、游泳馆、体育馆</li>
+          <li>现代化学生宿舍，空调、独立卫浴</li>
+          <li>粤港澳大湾区西部重要教育节点</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== HONORS ===== -->
+<section class="sec" id="honors">
+  <span class="sec-label r">荣誉成就</span>
+  <h2 class="sec-title r d1">硕果累累，<br>见证实力。</h2>
+  <p class="sec-desc r d2">学校在教学质量建设、科研成果转化、学生竞赛等方面屡获佳绩。</p>
+  <div class="honor-timeline">
+    <div class="honor-item r d1"><div class="year">持续建设</div><h4>广东省普通高等学校</h4><p>经教育部批准设立的全日制普通本科高校，纳入国家统一招生计划。</p></div>
+    <div class="honor-item r d2"><div class="year">产教融合标杆</div><h4>多个省级校企合作平台</h4><p>与华为、腾讯、阿里等头部企业共建联合实验室和产业学院。</p></div>
+    <div class="honor-item r d3"><div class="year">竞赛成绩</div><h4>"互联网+"大学生创新创业大赛省级奖项</h4><p>学生团队多次获得省级金奖、银奖，项目落地转化率逐年提升。</p></div>
+    <div class="honor-item r d4"><div class="year">教学成果</div><h4>省级教学成果奖多项</h4><p>应用型人才培养模式改革获省级认可，多项教改项目立项。</p></div>
+    <div class="honor-item r d5"><div class="year">就业质量</div><h4>毕业生就业率持续保持高位</h4><p>毕业生深受粤港澳大湾区企业欢迎，多家用人单位回访好评。</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== MOTTO CENTER ===== -->
+<section class="motto-center">
+  <div class="motto-big r">厚德 · 博学 · 笃行 · 创新</div>
+  <p class="motto-sub r d2">这是广应科的校训，也是每一位广应科学子行走天下的精神底色。</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== INTERNATIONAL ===== -->
+<section class="sec" id="intl">
+  <span class="sec-label r">国际交流</span>
+  <h2 class="sec-title r d1">放眼世界，<br>全球视野。</h2>
+  <p class="sec-desc r d2">学校积极推进国际化办学，与多国高校建立合作关系，为学生提供更广阔的交流平台。</p>
+  <div class="intl-grid">
+    <div class="intl-card r d1"><span class="flag">🇺🇸</span><h4>美国</h4><p>学分互认、交换生项目</p></div>
+    <div class="intl-card r d2"><span class="flag">🇬🇧</span><h4>英国</h4><p>2+2 / 3+1 本硕连读</p></div>
+    <div class="intl-card r d3"><span class="flag">🇦🇺</span><h4>澳大利亚</h4><p>奖学金留学计划</p></div>
+    <div class="intl-card r d4"><span class="flag">🇯🇵</span><h4>日本</h4><p>语言研修 + 升学通道</p></div>
+    <div class="intl-card r d5"><span class="flag">🇰🇷</span><h4>韩国</h4><p>短期交流 + 学期交换</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== CAMPUS LIFE ===== -->
+<section class="sec" id="life">
+  <span class="sec-label r">校园生活</span>
+  <h2 class="sec-title r d1">青春在这里，<br>绽放无限可能。</h2>
+  <p class="sec-desc r d2">百余个学生社团、丰富的文体活动、完善的体育设施——广应科的大学生活，远不止课堂。</p>
+  <div class="cards">
+    <div class="card r d1"><span class="card-icon">🎭</span><h3>社团文化</h3><p>街舞社、摄影协会、动漫社、辩论队……百团大战，总有一个属于你。</p></div>
+    <div class="card r d2"><span class="card-icon">🏀</span><h3>体育运动</h3><p>标准化足球场、篮球场、羽毛球场、游泳馆，校际联赛精彩纷呈。</p></div>
+    <div class="card r d3"><span class="card-icon">🎵</span><h3>文艺盛典</h3><p>校园歌手大赛、迎新晚会、毕业汇演，舞台永远为你点亮。</p></div>
+    <div class="card r d4"><span class="card-icon">🤖</span><h3>科创实践</h3><p>创客空间、机器人实验室、程序设计竞赛训练营，让创意变成现实。</p></div>
+    <div class="card r d5"><span class="card-icon">🌍</span><h3>志愿服务</h3><p>支教山区、社区服务、环保行动，在奉献中成长。</p></div>
+    <div class="card r d6"><span class="card-icon">🍜</span><h3>美食天地</h3><p>多个食堂窗口汇聚各地风味，从粤式早点到川湘小炒，满足你的胃。</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== ADMISSIONS ===== -->
+<section class="sec" id="admissions">
+  <div class="adm-banner r">
+    <div>
+      <h3>2026 年招生进行中</h3>
+      <p>面向粤港澳大湾区及全国各省招生，涵盖理科、文科、艺术类等多个类别。欢迎有志青年加入广应科大家庭。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="adm-btn" onclick="window.open('https://www.gzucd.edu.cn','_blank')">访问官网</button>
+      <button class="adm-btn" style="background:transparent;border:1px solid var(--blue);color:var(--blue)" onclick="alert('招生简章即将开放下载，敬请期待！')">下载简章</button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== ALUMNI ===== -->
+<section class="sec" id="alumni">
+  <span class="sec-label r">校友风采</span>
+  <h2 class="sec-title r d1">他们从这里出发，<br>走向世界。</h2>
+  <p class="sec-desc r d2">广应科学子遍布粤港澳大湾区各行各业，在各自的领域发光发热。</p>
+  <div class="alumni-grid">
+    <div class="alumni-card r d1">
+      <div class="alumni-avatar">👩‍💻</div>
+      <h4>林同学</h4>
+      <div class="role">2022 届 · 计算机科学与技术 · 现就职于某头部互联网公司</div>
+      <p>在校期间参加多项省级编程竞赛，毕业后进入一线大厂从事前端开发工作。</p>
+      <blockquote>"广应科的应用型培养模式让我在校期间就积累了扎实的项目经验，面试时游刃有余。"</blockquote>
+    </div>
+    <div class="alumni-card r d2">
+      <div class="alumni-avatar">👨‍🎨</div>
+      <h4>陈同学</h4>
+      <div class="role">2021 届 · 视觉传达设计 · 独立设计师 / 创业合伙人</div>
+      <p>毕业设计作品获省级优秀毕业论文，毕业后创立设计工作室，服务多家知名品牌。</p>
+      <blockquote>"学校的创意氛围和导师的指导让我找到了自己的设计语言。"</blockquote>
+    </div>
+    <div class="alumni-card r d3">
+      <div class="alumni-avatar">👩‍🏫</div>
+      <h4>黄同学</h4>
+      <div class="role">2020 届 · 学前教育 · 某重点小学校长</div>
+      <p>从广应科走出，回到母校任教，现已成为学校教学骨干和管理者。</p>
+      <blockquote>"在这里学到的不仅是专业知识，更是教育的初心与使命。"</blockquote>
+    </div>
+    <div class="alumni-card r d4">
+      <div class="alumni-avatar">👨‍💼</div>
+      <h4>张同学</h4>
+      <div class="role">2019 届 · 电子商务 · 跨境电商创业者</div>
+      <p>利用在学校学到的电商运营知识，创立自主品牌，产品远销海外。</p>
+      <blockquote>"广应科的应用导向让我真正学会了如何将知识转化为生产力。"</blockquote>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h5>广州应用科技学院</h5>
+        <p>全日制普通本科高校</p>
+        <p>广州校区 · 肇庆校区</p>
+        <p>广东省教育厅主管</p>
+      </div>
+      <div class="footer-col">
+        <h5>快速链接</h5>
+        <a href="https://www.gzucd.edu.cn" target="_blank" rel="noopener">官方网站</a>
+        <a href="#">招生信息网</a>
+        <a href="#">图书馆</a>
+        <a href="#">教务处</a>
+      </div>
+      <div class="footer-col">
+        <h5>院系设置</h5>
+        <a href="#depts">工学类</a>
+        <a href="#depts">管理学类</a>
+        <a href="#depts">艺术设计类</a>
+        <a href="#depts">语言文学类</a>
+      </div>
+      <div class="footer-col">
+        <h5>关注我们</h5>
+        <a href="#">微信公众号</a>
+        <a href="#">官方微博</a>
+        <a href="#">抖音号</a>
+        <a href="#">Bilibili</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 广州应用科技学院 · 本页面为演示作品，仅供学习交流使用</p>
+      <div class="footer-bottom-links">
+        <a href="#">隐私政策</a>
+        <a href="#">使用条款</a>
+        <a href="#">网站地图</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// --- Reveal on Scroll ---
+(function(){
+  const els=document.querySelectorAll('.r');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  els.forEach(el=>obs.observe(el));
+})();
+
+// --- Mobile Menu ---
+(function(){
+  const ham=document.getElementById('ham'),nav=document.getElementById('nav');
+  ham.addEventListener('click',()=>nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+})();
+
+// --- Smooth Anchor Offset ---
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-60,behavior:'smooth'})}
+  });
+});
+
+// --- Department Tabs ---
+(function(){
+  const tabs=document.querySelectorAll('.dept-tab');
+  const panels=document.querySelectorAll('.dept-panel');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      const panel=document.getElementById('panel-'+tab.dataset.tab);
+      if(panel)panel.classList.add('active');
+    });
+  });
+})();
+
+// --- Nav background on scroll ---
+(function(){
+  const nav=document.querySelector('.nav');
+  window.addEventListener('scroll',()=>{
+    nav.style.background=window.scrollY>80?'rgba(10,10,11,.88)':'rgba(29,29,31,.72)';
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
